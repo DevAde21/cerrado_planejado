@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav ul li a');
 
@@ -11,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
-    
+
     // Adicionando o redirecionamento para o botão de orçamento
     const budgetButton = document.querySelector('.home-budget-button');
     if (budgetButton) {
@@ -72,8 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(nextSlide, 3000);
 });
 
-// Resto do script
-
+// Dados dos produtos para os carrosséis
 const productsCarouselData = [
     { title: "Salas", directory: "assets/produtos/sala", numImages: 17 },
     { title: "Escritórios", directory: "assets/produtos/escritorio", numImages: 5 },
@@ -134,7 +131,7 @@ function createProductsCarousel(data) {
             productsCarouselItem.classList.add('products-carousel-item');
             const img = document.createElement('img');
             img.loading = 'lazy';
-            img.src = `${data.directory}/${data.directory.split('/').pop()}${i}.webp`; // Updated line here
+            img.src = `${data.directory}/${data.directory.split('/').pop()}${i}.webp`;
             img.alt = `${data.title} ${i}`;
             productsCarouselItem.appendChild(img);
             productsCarouselTrack.appendChild(productsCarouselItem);
@@ -151,6 +148,55 @@ function createProductsCarousel(data) {
     let productsCurrentX = 0;
     let productsIsDragging = false;
     let productsThreshold = productsItemWidth / 2;
+
+     // Cria um elemento de sobreposição para o fundo escurecido
+     const overlay = document.createElement('div');
+     overlay.classList.add('overlay');
+     document.body.appendChild(overlay);
+ 
+     // Adiciona um ouvinte de evento de clique a cada imagem do carrossel
+     productsCarouselItems.forEach(item => {
+         const img = item.querySelector('img');
+         img.addEventListener('click', () => {
+             // Cria uma cópia da imagem clicada para exibição ampliada
+             const expandedImg = document.createElement('img');
+             expandedImg.src = img.src;
+             expandedImg.classList.add('expanded-image');
+ 
+             // Adiciona a imagem ampliada e o fundo ao corpo do documento
+             document.body.appendChild(expandedImg);
+             overlay.style.display = 'block';
+ 
+             // Impede a rolagem do corpo da página
+             document.body.classList.add('zoom-active');
+ 
+             // Adiciona um ouvinte de evento de clique para fechar a imagem ampliada
+             const closeExpandedImage = () => {
+                 document.body.removeChild(expandedImg);
+                 overlay.style.display = 'none';
+                 document.body.classList.remove('zoom-active');
+                 // Remove os ouvintes de evento quando a imagem é fechada
+                 window.removeEventListener('wheel', closeExpandedImage);
+                 window.removeEventListener('touchmove', closeExpandedImage);
+                 window.removeEventListener('keydown', closeExpandedImageOnEsc);
+             };
+ 
+             // Fecha a imagem ampliada ao rolar
+             window.addEventListener('wheel', closeExpandedImage);
+             window.addEventListener('touchmove', closeExpandedImage);
+ 
+             // Fecha a imagem ampliada ao pressionar Esc
+             const closeExpandedImageOnEsc = (event) => {
+                 if (event.key === 'Escape') {
+                     closeExpandedImage();
+                 }
+             };
+             window.addEventListener('keydown', closeExpandedImageOnEsc);
+ 
+             expandedImg.addEventListener('click', closeExpandedImage);
+             overlay.addEventListener('click', closeExpandedImage);
+         });
+     });
 
     function cloneProductsItems() {
         for (let i = 0; i < productsItemsToShow; i++) {
@@ -174,7 +220,7 @@ function createProductsCarousel(data) {
     function updateProductsCarouselItems() {
         productsClonedItems.forEach((item, index) => {
             const itemIndex = calculateProductsLoopIndex(index);
-            item.querySelector('img').src = `${data.directory}/${data.directory.split('/').pop()}${itemIndex}.webp`; // Updated line here
+            item.querySelector('img').src = `${data.directory}/${data.directory.split('/').pop()}${itemIndex}.webp`;
         });
     }
 
@@ -209,12 +255,12 @@ function createProductsCarousel(data) {
         }
     }
 
-  // Função para verificar se um cursor está presente
+    // Função para verificar se um cursor está presente
     function hasCursor() {
         return window.matchMedia('(pointer: fine)').matches;
     }
 
-  // Exibe ou oculta setas e habilita/desabilita drag dependendo se há cursor ou não
+    // Exibe ou oculta setas e habilita/desabilita drag dependendo se há cursor ou não
     function updateCarouselMode() {
        if (hasCursor()) {
             // Exibe setas e habilita clique
