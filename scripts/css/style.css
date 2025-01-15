@@ -17,13 +17,55 @@ body, ul {
     list-style: none;
 }
 
+
+
+
+
+
+
+
+
 body {
-    font-family: "Roboto", serif;
-    background: linear-gradient(to right, #11b411, #005200);
+    font-family: "Alice", serif;
+    position: relative; /* Adiciona position relative ao body */
+    background: linear-gradient(to right, #11b411, #005200); /* Gradiente aplicado diretamente ao body */
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: scroll;
+    z-index: 0; /* Garante que o body fique atrás dos pseudo-elementos */
 }
+
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%; /* Ajuste a largura conforme necessário */
+    height: calc(100% - 100vh);
+    background-image: url('../../assets/padrao1.png'); /* Caminho relativo à imagem de fundo */
+    background-repeat: repeat-y; /* A imagem se repete apenas verticalmente */
+    background-size: auto; /* Mantém o tamanho original da imagem */
+    z-index: -1; /* Coloca os pseudo-elementos atrás do conteúdo do body */
+}
+
+body::before {
+    top: 100vh;
+    left: 0; /* Posiciona o primeiro pseudo-elemento no lado esquerdo */
+}
+
+body::after {
+    right: 0; /* Posiciona o segundo pseudo-elemento no lado direito */
+    transform: scaleX(-1);
+    top: 100vh;
+}
+
+
+
+
+
+
+
+
 
 /* Estilos do Header */
 header {
@@ -254,6 +296,29 @@ header {
 
 /* Estilos do resto do site */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #produtos {
     position: relative; /* Necessário para que o z-index dos filhos funcione */
     z-index: -100; /* Garante que a seção fique acima do quadrado branco */
@@ -402,7 +467,7 @@ h1 {
     position:relative;
     bottom: 1.8rem;
     background: linear-gradient(to right, #11b411, #005200);
-    z-index: -1; /* Ficará embaixo dos títulos */
+    z-index: -2; /* Ficará embaixo dos títulos */
 }
 
 /* Estilos para a imagem ampliada */
