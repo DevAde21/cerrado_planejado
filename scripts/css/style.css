@@ -260,7 +260,7 @@ header {
     border-radius: 5px;
     transition: all 0.3s;
     cursor: pointer;
-    background: linear-gradient(to right, #00a200, #005200);
+    background: #088208;
     font-size: 1.2rem;
     color: white;
     z-index: 99;
@@ -270,7 +270,7 @@ header {
 }
 
 .home-budget-button:hover {
-    background: linear-gradient(to right, #00d200, #008200);
+    background: #08c208;
     transform: scale(1.1);
 }
 
@@ -632,8 +632,9 @@ h1 {
 
 .choose-us-title {
     font-size: 48px;
+    font-weight: normal;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
     text-align: center;
     font-family: "Roboto", serif;
 }
@@ -642,7 +643,6 @@ h1 {
     width: 470px;
     height: 3px;
     background-color: #cbdb26;
-    margin-top: 5px;
     align-self: center;
 }
 
@@ -653,8 +653,10 @@ h1 {
 }
 
 .choose-us-card {
-    background-color: #005100;
+    background-color: #005200;
+    border-radius: 5px;
     padding: 20px;
+    height: 37.4rem;
     width: 100%;
     max-width: 450px;
     position: relative;
@@ -703,13 +705,13 @@ h1 {
 /* Global footer styles */
 footer {
     width: 100%;
-    background-color: #005100;
+    background-color: #005200;
     color: white;
     padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 4.9rem;
     font-size: 17px;
 }
 
@@ -724,6 +726,7 @@ footer {
     line-height: 1.5;
     margin-bottom: 0;
     font-family: "Roboto", serif;
+    margin-top: 0;
 }
 
 .footer-social {
@@ -1195,21 +1198,6 @@ footer {
         margin-top: .6rem;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     .products-arrows-container {
         width: 931.5px;
         margin-bottom: 13.5px;
@@ -1271,7 +1259,7 @@ footer {
         background: #005200;
         padding: 1rem;
         padding-top: .1rem;
-        padding-bottom: 1rem;
+        width: 4rem;
         border-radius: 5px;
     }
 
@@ -1287,6 +1275,13 @@ footer {
     .card-text {
         font-size: 1rem;
     }
+
+
+
+
+
+
+
 
     .choose-us-section .content {
         flex-direction: row;
