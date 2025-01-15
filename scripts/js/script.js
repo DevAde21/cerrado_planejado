@@ -71,12 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Dados dos produtos para os carrosséis
-const productsCarouselData = [
-    { title: "Salas", directory: "assets/produtos/sala", numImages: 17 },
-    { title: "Escritórios", directory: "assets/produtos/escritorio", numImages: 5 },
+const productsCarouselData = [ // ideal serem sempre múltiplos de 3
+    { title: "Salas", directory: "assets/produtos/sala", numImages: 18 },
+    { title: "Escritórios", directory: "assets/produtos/escritorio", numImages: 6 },
     { title: "Quartos", directory: "assets/produtos/quarto", numImages: 6 },
     { title: "Banheiros", directory: "assets/produtos/banheiro", numImages: 3 },
-    { title: "Cozinhas", directory: "assets/produtos/cozinha", numImages: 8 }
+    { title: "Cozinhas", directory: "assets/produtos/cozinha", numImages: 9 }
 ];
 
 const productsItemsToShow = 3;
@@ -234,7 +234,7 @@ function createProductsCarousel(data) {
     function moveToProductsSlide(index) {
         if (productsIsTransitioning) return;
         productsIsTransitioning = true;
-        productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
+        productsCarouselTrack.style.transition = 'transform .5s ease-in-out';
         productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(index)}px)`;
 
         productsFirstVisibleItem = index;
