@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Dados dos produtos para os carrosséis
-const productsCarouselData = [ // ideal serem sempre múltiplos de 3
+const productsCarouselData = [ // ideal serem sempre números pares
     { title: "Salas", directory: "assets/produtos/sala", numImages: 18 },
     { title: "Escritórios", directory: "assets/produtos/escritorio", numImages: 6 },
     { title: "Quartos", directory: "assets/produtos/quarto", numImages: 6 },
