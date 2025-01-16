@@ -4,52 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerrado Planejado - Orçamento em Breve</title>
-    <link rel="icon" type="image/png" href="../../assets/logo.png">
     <style>
+        /* Importando a fonte novecento */
+        @import url(https://db.onlinewebfonts.com/c/c2988552206031b82497c4a05a393759?family=Novecento+WideMedium);
+
+        @font-face {
+            font-family: "Novecento WideMedium";
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot");
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.svg#Novecento WideMedium")format("svg");
+        }
+
         body {
             background: linear-gradient(to right, #11b411, #005200);
             color: white;
-            font-family: 'Alice', serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: "Novecento WideMedium";
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden; /* Para evitar barras de rolagem desnecessárias */
+        }
+
+        body::before {
+            content: '';
+            position:fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .5;
+            background-image: url("../../assets/padrao1.png"), url("../../assets/padrao1.png");
+            background-position: left top, right top;
+            background-repeat: repeat-y, repeat-y;
+            background-size: auto 100%; /* Ajuste conforme necessário */
+            pointer-events: none; /* Para que o fundo não intercepte eventos do mouse */
+            z-index: -1; /* Garante que o pseudo-elemento fique atrás do conteúdo */
         }
 
         .container {
             background-color: #005200; /* Fundo semi-transparente para se misturar com o gradiente */
-            padding: 40px;
-            border-radius: 20px; /* Bordas arredondadas */
+            padding: 2rem;
+            border-radius: 5px; /* Bordas arredondadas */
             margin-left: 1rem;
             margin-right: 1rem;
+            
+            /* Centralização */
+            justify-self: center;
+            position: absolute;
+            top: 50%;
+            left: 48.15%;
+            transform: translate(-50%, -50%);
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-weight: normal;
+            font-size: 3rem;
             text-align: center;
+            margin-top: 0;
         }
 
         p {
-            font-size: 24px;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
 
         .icons {
             display: flex;
+            margin-top: 1rem;
             gap: 30px;
-            justify-self: center;
+            justify-content: center; /* Centraliza os ícones horizontalmente */
         }
 
         .icons img {
             width: auto;
             height: 50px;
+            transition: 0.2s ease;
+        }
+
+        .icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .return-button {
+            text-align: center;
+            display: block; /* Faz o botão ocupar toda a largura disponível */
+            width: 40%;
+            margin: 40px auto 15px; /* Centraliza horizontalmente e adiciona margem acima */
+            padding: 10px 20px; /* Ajusta o preenchimento interno para o tamanho */
+            background-color: white;
+            color: #005200;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-family: "Novecento WideMedium";
+            font-size: .9rem;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .return-button:hover {
+            transform: scale(1.1);
+        }
+      
+
+        @media (max-width: 336px) {
+            body::before {
+                display: none;
+            }
+            .return-button {
+                font-size: .8rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: .7rem;
+            }
+
+            .icons img {
+            width: auto;
+            height: 30px;
+            }
+
+            .return-button {
+                width: 60%;
+                padding: 0 1;
+                font-size: .6rem;
+            }
+        }
+
+        @media (min-width: 336px) and (max-width: 500px) {
+            body::before {
+                display: none;
+            }
+            .return-button {
+                font-size: .8rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .icons img {
+                width: auto;
+                height: 40px;
+            }
+
+            .return-button {
+                font-size: .7rem;
+            }
+        }
+
+        @media (min-width: 501px) and (max-width: 785px) {
+            body::before {
+                display: none;
+            }
+            .return-button {
+                font-size: .8rem;
+            }
+        }
+        
+        @media (min-width: 786px) and (min-width: 1100px) {
+            .return-button {
+                width: 18rem;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -61,6 +192,7 @@
             <a href="https://www.instagram.com/cerradoplanejado/" target="_blank"><img src="../../assets/instagram.png" alt="Instagram"></a>
             <a href="mailto:contato@cerradoplanejado.com.br" target="_blank"><img src="../../assets/email.png" alt="Email"></a>
         </div>
+        <a href="/" class="return-button">Retornar para a página inicial</a>
     </div>
 </body>
 </html>

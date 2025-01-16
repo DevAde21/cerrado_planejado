@@ -1,10 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('.nav ul li a');
+
+    // Menu de Navegação para Media Query 2
+    const menuToggle = document.querySelector('.secondary-menu-toggle');
+    const secondaryMenu = document.createElement('div'); // Cria o menu secundário
+    secondaryMenu.classList.add('secondary-menu');
+    document.body.appendChild(secondaryMenu); // Adiciona o menu ao body
+
+    // Cria a lista de itens do menu secundário
+    const menuItems = `
+        <ul>
+            <li><a href="#inicio" class="active">Tela Inicial</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#processo">Etapas do processo</a></li>
+            <li><a href="#escolher">Por que nos escolher</a></li>
+            <li><a href="scripts/html/about_us.html">Sobre nós</a></li>
+        </ul>
+    `;
+    secondaryMenu.innerHTML = menuItems;
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    document.body.appendChild(overlay);
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            secondaryMenu.classList.toggle('active'); // Abre/fecha o menu
+            overlay.style.display = 'block'; //mostra o overlay
+            document.body.classList.add('menu-active'); // Adiciona classe para prevenir scroll
+        });
+    }
+
+    // Fecha o menu ao clicar fora dele
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            secondaryMenu.classList.remove('active');
+            overlay.style.display = 'none';
+            document.body.classList.remove('menu-active'); // Remove classe para permitir scroll
+        });
+    }
+
+    const navLinks = document.querySelectorAll('.nav ul li a, .secondary-menu ul li a'); // Alteração na linha para adicionar itens do menu
 
     // Adicionando o redirecionamento para o botão Sobre
     navLinks.forEach(link => {
         if (link.getAttribute('href') === 'scripts/html/about_us.html') {
             link.addEventListener('click', function(event) {
+                event.preventDefault();
+                secondaryMenu.classList.remove('active');
+                overlay.style.display = 'none';
+                document.body.classList.remove('menu-active'); // Remove classe para permitir scroll
                 window.location.href = 'scripts/html/about_us.html';
             });
         }
@@ -28,6 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (targetId === '#inicio') {
                 window.scrollTo(0, 0);
+                secondaryMenu.classList.remove('active');
+                overlay.style.display = 'none';
+                document.body.classList.remove('menu-active');
             } else {
                 let targetElement;
                 if (targetId === '#produtos') {
@@ -48,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         top: targetPosition,
                         behavior: 'smooth'
                     });
+                    secondaryMenu.classList.remove('active');
+                    overlay.style.display = 'none';
+                    document.body.classList.remove('menu-active');
                 }
             }
         });
