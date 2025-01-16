@@ -6,8 +6,80 @@
     <title>Cerrado Planejado - Sobre Nós</title>
     <link rel="icon" type="image/png" href="../../assets/logo.png">
     <style>
-        /* Importando a fonte alice */
-        @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+        /* Importando a fonte novecento */
+        @import url(https://db.onlinewebfonts.com/c/c2988552206031b82497c4a05a393759?family=Novecento+WideMedium);
+
+        @font-face {
+            font-family: "Novecento WideMedium";
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot");
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.svg#Novecento WideMedium")format("svg");
+        }
+
+        body {
+            background: linear-gradient(to right, #11b411, #005200);
+            color: white;
+            font-family: "Novecento WideMedium";
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position:fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .5;
+            background-image: url("../../assets/padrao1.png"), url("../../assets/padrao1.png");
+            background-position: left top, right top;
+            background-repeat: repeat-y, repeat-y;
+            background-size: auto 100%; /* Ajuste conforme necessário */
+            pointer-events: none; /* Para que o fundo não intercepte eventos do mouse */
+            z-index: -1; /* Garante que o pseudo-elemento fique atrás do conteúdo */
+        }
+        /* Importando a fonte novecento */
+        @import url(https://db.onlinewebfonts.com/c/c2988552206031b82497c4a05a393759?family=Novecento+WideMedium);
+
+        @font-face {
+            font-family: "Novecento WideMedium";
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot");
+            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.svg#Novecento WideMedium")format("svg");
+        }
+
+        body {
+            background: linear-gradient(to right, #11b411, #005200);
+            color: white;
+            font-family: "Novecento WideMedium";
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position:fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .5;
+            background-image: url("../../assets/padrao1.png"), url("../../assets/padrao1.png");
+            background-position: left top, right top;
+            background-repeat: repeat-y, repeat-y;
+            background-size: auto 100%; /* Ajuste conforme necessário */
+            pointer-events: none; /* Para que o fundo não intercepte eventos do mouse */
+            z-index: -1; /* Garante que o pseudo-elemento fique atrás do conteúdo */
+        }
 
         /* Reset e box-sizing */
         html {
@@ -26,7 +98,7 @@
         }
 
         body {
-            font-family: "Alice", serif;
+            font-family: "Novecento WideMedium";
             background: linear-gradient(to right, #11b411, #005200);
             background-repeat: no-repeat; /* Impede a repetição do background */
             background-size: cover; /* Ajusta o tamanho para cobrir a tela */
@@ -38,21 +110,21 @@
         }
 
         h2 {
-            font-size: 2em;
+            font-size: 1.5rem;
             margin-bottom: 20px;
             color: white;
             text-align: center;
         }
 
         .p-base {
-            font-size: 1.1em;
+            font-size: .8rem;
             color: white;
             margin-bottom: 1rem;
             text-align: justify;
         }
 
         .p-values {
-            font-size: 1.1em;
+            font-size: .8rem;
             color: white;
             margin-bottom: 2rem;
             text-align: justify;
@@ -61,6 +133,7 @@
         }
 
         p {
+            font-size: .8rem;
             text-align: center;
         }
 
@@ -76,7 +149,7 @@
             margin-bottom: 50px;
             gap: 3rem;
             border: 5px solid white;
-            border-radius: 15px;
+            border-radius: 5px;
         }
 
         .text-content {
@@ -114,12 +187,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 5px;
         }
 
         .values-section {
             border: 5px solid white;
-            border-radius: 15px;
+            border-radius: 5px;
         }
 
         .values-grid {
@@ -130,7 +203,7 @@
 
         .value-item {
             background-color: #005200;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 20px;
             text-align: center;
             color: white;
@@ -139,6 +212,27 @@
 
         .value-item h3 {
             margin-bottom: 15px;
+        }
+
+        .return-button {
+            text-align: center;
+            display: block; /* Faz o botão ocupar toda a largura disponível */
+            width: 20rem;
+            margin: 40px auto 15px; /* Centraliza horizontalmente e adiciona margem acima */
+            padding: 10px 20px; /* Ajusta o preenchimento interno para o tamanho */
+            background-color: white;
+            color: #005200;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-family: "Novecento WideMedium";
+            font-size: .9rem;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .return-button:hover {
+            transform: scale(1.1);
         }
 
         /* Media Query para telas menores que 950px */
@@ -161,6 +255,7 @@
             .quem-somos .text-content,
             .nossa-historia .text-content {
                 padding: 0;
+                margin: 0;
             }
 
             .image-box {
@@ -197,10 +292,23 @@
                 justify-self: center;
                 max-width: 30rem;
             }
+
+            .return-button {
+                width: 15rem;
+                font-size: .7rem;
+            }
+        }
+
+        @media (max-width: 1400px) {
+            body::before {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    
+    <a href="/" class="return-button">Retornar para a página inicial</a>
 
     <div class="container">
 
