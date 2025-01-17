@@ -664,7 +664,7 @@ h1 {
 .choose-us-item::before {
     content: '';
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 20px;
     transform: translateX(-50%);
     height: calc(100% - 16px);
@@ -942,7 +942,7 @@ footer {
     
     .products-apresentation-text{
         padding-top: 2%;
-        font-size: .8rem;
+        font-size: .65rem;
         line-height: 2rem;
     }
 
@@ -1021,7 +1021,7 @@ footer {
     }
 
     .card-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     /* Estilos da seção Por que nos escolher */
@@ -1046,8 +1046,12 @@ footer {
 
     .choose-us-card {
         padding: 20px;
-        width: 100%;
+        width: 95%;
         height: auto;
+    }
+
+    .choose-us-item {
+        padding-top: 1rem;
     }
 
     .choose-us-icon {
@@ -1056,7 +1060,7 @@ footer {
     }
 
     .choose-us-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .choose-us-line {
@@ -1069,7 +1073,7 @@ footer {
 
     /* Estilos do Footer */
     footer {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social-icon {
@@ -1077,7 +1081,7 @@ footer {
     }
 
     .footer-text, .footer-social-link, .footer-copyright {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social {
@@ -1356,7 +1360,7 @@ footer {
     }
 
     .card-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     /* Estilos da seção Por que nos escolher */
@@ -1381,8 +1385,12 @@ footer {
 
     .choose-us-card {
         padding: 20px;
-        width: 100%;
+        width: 95%;
         height: auto;
+    }
+
+    .choose-us-item {
+        padding-top: 1rem;
     }
 
     .choose-us-icon {
@@ -1391,7 +1399,7 @@ footer {
     }
 
     .choose-us-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .choose-us-line {
@@ -1404,7 +1412,7 @@ footer {
 
     /* Estilos do Footer */
     footer {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social-icon {
@@ -1412,7 +1420,7 @@ footer {
     }
 
     .footer-text, .footer-social-link, .footer-copyright {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social {
@@ -1606,7 +1614,7 @@ footer {
     
     .products-apresentation-text{
         padding-top: 1%;
-        font-size: 1rem;
+        font-size: 1.2rem;
         line-height: 2rem;
     }
 
@@ -1685,7 +1693,7 @@ footer {
     }
 
     .card-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     /* Estilos da seção Por que nos escolher */
@@ -1710,8 +1718,12 @@ footer {
 
     .choose-us-card {
         padding: 20px;
-        width: 100%;
+        width: 95%;
         height: auto;
+    }
+
+    .choose-us-item {
+        padding-top: 1rem;
     }
 
     .choose-us-icon {
@@ -1720,7 +1732,7 @@ footer {
     }
 
     .choose-us-text {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .choose-us-line {
@@ -1733,7 +1745,7 @@ footer {
 
     /* Estilos do Footer */
     footer {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social-icon {
@@ -1741,7 +1753,7 @@ footer {
     }
 
     .footer-text, .footer-social-link, .footer-copyright {
-        font-size: .77rem;
+        font-size: .7rem;
     }
 
     .footer-social {
@@ -1905,15 +1917,17 @@ footer {
     }
 
     .home-title {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 
     .home-body-text {
         font-size: 1rem;
+        padding: 0 3rem;
     }
 
     .home-line-image {
         margin-top: .6rem;
+        padding: 0 3rem;
     }
 
     /* Estilos dos Produtos */
@@ -1981,6 +1995,11 @@ footer {
     .choose-us-card {
         padding: 20px;
         width: 95%;
+        height: auto;
+    }
+
+    .choose-us-item {
+        padding-top: 1rem;
     }
 
     .choose-us-icon {
@@ -1990,7 +2009,7 @@ footer {
 
     .choose-us-text {
         padding-top: .1rem;
-        font-size: .89rem;
+        font-size: .7rem;
     }
 
     .choose-us-line {
@@ -2171,16 +2190,17 @@ footer {
     }
 
     .home-title {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
 
     .home-body-text {
-        font-size: 1rem;
+        font-size: .8rem;
     }
 
     .home-line-image {
         margin-top: .6rem;
     }
+
 
     /* Estilos dos Produtos */
     .products-arrows-container {
@@ -2231,6 +2251,11 @@ footer {
     .choose-us-card {
         padding: 20px;
         width: 95%;
+        height: auto;
+    }
+
+    .choose-us-item {
+        padding-top: 1rem;
     }
 
     .choose-us-icon {
@@ -2240,7 +2265,7 @@ footer {
 
     .choose-us-text {
         padding-top: .1rem;
-        font-size: .95rem;
+        font-size: .8rem;
     }
 
     .choose-us-line {
@@ -2334,11 +2359,11 @@ footer {
     }
 
     .home-title {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
 
     .home-body-text {
-        font-size: 1rem;
+        font-size: .8rem;
     }
 
     .home-line-image {
@@ -2389,7 +2414,7 @@ footer {
     }
 
     .card-content {
-        padding-top: 0rem;
+        padding-top: .9rem;
     }
 
     .card-title {
@@ -2397,7 +2422,7 @@ footer {
     }
 
     .card-text {
-        font-size: .9rem;
+        font-size: .8rem;
     }
 
     /* Estilos dos Produtos */
@@ -2452,14 +2477,17 @@ footer {
         height: auto;
     }
 
+    .choose-us-item {
+        padding-top: 1rem;
+    }
+
     .choose-us-icon {
         width:  2.188rem;
         height: 2.188rem;
     }
 
     .choose-us-text {
-        padding-top: .1rem;
-        font-size: .95rem;
+        font-size: .8rem;
     }
 
     .choose-us-line {
@@ -2546,7 +2574,7 @@ footer {
     }
 
     .card-content {
-        padding-top: 0rem;
+        padding-top: .9rem;
     }
 
     .card-title {
@@ -2554,7 +2582,7 @@ footer {
     }
 
     .card-text {
-        font-size: .9rem;
+        font-size: .8rem;
     }
 }
 
