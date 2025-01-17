@@ -754,8 +754,343 @@ footer {
 
 /* Media Queries */
 
-/* Media Query -1: 420px - 677px*/
-@media (min-width: 420px) and (max-width: 677px) {
+/* Media Query -2: 320px - 420px*/
+@media (min-width: 320px) and (max-width: 420px) {
+    body::before,
+    body::after {
+        display: none;
+    }
+    
+    /* Estilos do Header */
+    header {
+        height: 2.5rem;
+    }
+
+    .container{
+        margin: 0;
+        padding: 0;
+        justify-content: space-between; /* Adicionado para melhor distribuição */
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0; /* Removendo margens */
+        padding: 0; /* Removendo paddings */
+        width: fit-content;
+      }
+
+    .logo img {
+        height: 1.6rem;
+        margin: 0;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: .6rem;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    /* Menu de Navegação */
+    .secondary-menu-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        margin: 0;
+    }
+
+    .secondary-menu-icon {
+        width: 1.2rem;
+        height: auto;
+        transition: 0.2s ease; /* Animação de entrada e saída */
+    }
+
+    .secondary-menu-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .secondary-menu {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Começa fora da tela */
+        width: 20rem;
+        height: 21rem;
+        border-radius: 0 0 1rem 0;
+        background-color: white;
+        z-index: 10001; /* Acima do header */
+        transition: left 0.2s ease; /* Animação de entrada e saída */
+        overflow-y: hidden;
+    }
+
+    .secondary-menu.active {
+        left: 0; /* Move para a tela quando ativo */
+    }
+
+    .secondary-menu ul {
+        padding: 1rem;
+    }
+
+    .secondary-menu ul li {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #ccc; /* Linha separadora */
+        padding-bottom: 1rem;
+    }
+
+    .secondary-menu ul li a {
+        text-decoration: none;
+        color: #005200; /* Cor do texto do menu */
+        font-size: 1rem;
+        font-family: "Novecento WideMedium";
+        display: block;
+    }
+
+    .secondary-menu ul li a:hover {
+        color: #009200;
+    }
+
+    /* Adição de Estilos para os Contatos do Menu Secundário */
+    .secondary-menu-contacts {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 3rem 0rem 3rem;
+    margin-top: -.5rem;
+    }
+
+    .secondary-menu-contacts a {
+    display: flex;
+    }
+
+    .secondary-menu-contacts-icon {
+    width: 2rem;
+    height: auto;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+
+    /* Estilos da HOME */
+    .home-main {
+        flex-direction: column; /* Altera o layout para coluna */
+        align-items: center; /* Centraliza os elementos horizontalmente */
+        padding-top: 2.5rem;
+    }
+
+    .home-right-box {
+        position: relative; /* Altera o posicionamento para relativo */
+        height: 50%;
+        width: 100%;
+        padding: 1.2rem .5rem;
+    }
+
+    .home-content-box {
+        height: 50vh;
+        width: 100%;
+        margin: 0;
+    }
+
+    .home-text-content {
+        padding: .625rem;
+        word-break: break-word;
+        margin-top: -.7rem;
+    }
+
+    .home-title {
+        font-size: 1.7rem;
+    }
+
+    .home-body-text {
+        font-size: 1rem;
+    }
+
+    .home-line-image {
+        margin-top: .6rem;
+    }
+
+    /* Estilos dos Produtos */
+
+    .products-background {
+        background-color: #00000000; /* Invisível */
+        width: 45rem;
+        height: 100rem;
+    }
+    
+    .products-background-son{
+        width: 100svw;
+        height: 5rem;
+    }
+    
+    .products-apresentation-text{
+        padding-top: 2%;
+        font-size: .8rem;
+        line-height: 2rem;
+    }
+
+    .products-arrows-container {
+        display: none;
+    }
+
+    .products-carousel-container {
+        width: 51rem;
+    }
+
+    .products-carousel-item {
+        width: 16.15rem;
+        height: 12rem;
+        padding: 0 .05rem 0 .05rem;
+    }
+
+    h1 {
+        font-size: 1rem;
+        color: #005200;
+        background: white;
+    }
+
+    .products-separator {
+        background: white;
+    }
+
+    /* Estilos da seção Etapas do Processo */
+    #processo {
+        height: 130rem;
+    }
+
+    .process-title {
+        font-size: 1.5rem;
+        font-weight: normal;
+        color: #005200;
+        margin-top: 3.3rem;
+        margin-bottom: -2.5rem;
+    }
+
+    .process-steps {
+        max-width: 60rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap; /* Adicionado para quebrar em linhas */
+        justify-content: center;
+    }
+
+    .process-card {
+        margin-top: 5rem;
+        width: 12rem;
+        height: 15rem;
+        border-radius: 5px;
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+
+    .process-card::after {
+        top: -3rem;
+        font-size: 2.3rem;
+        color: white;
+        background: #005200;
+        padding: 1rem;
+        padding-top: .1rem;
+        width: 4rem;
+        border-radius: 5px;
+    }
+
+    .card-content {
+        padding-top: 0rem;
+    }
+
+    .card-title {
+        font-size: .9rem;
+    }
+
+    .card-text {
+        font-size: .77rem;
+    }
+
+    /* Estilos da seção Por que nos escolher */
+    .choose-us-section .content {
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .choose-us-text-wrapper {
+        margin: 0 0 1rem 0;
+        width: 25rem;
+    }
+
+    .choose-us-card-wrapper {
+        width: 70%;
+    }
+
+    .choose-us-title {
+        font-size: 1.6rem;
+    }
+
+    .choose-us-card {
+        padding: 20px;
+        width: 100%;
+        height: auto;
+    }
+
+    .choose-us-icon {
+        width:  2.188rem;
+        height: 2.188rem;
+    }
+
+    .choose-us-text {
+        font-size: .77rem;
+    }
+
+    .choose-us-line {
+        width: 20rem;
+    }
+
+    .choose-us-item::before {
+        left: 5%;
+    }
+
+    /* Estilos do Footer */
+    footer {
+        font-size: .77rem;
+    }
+
+    .footer-social-icon {
+        width: 1.12rem;
+    }
+
+    .footer-text, .footer-social-link, .footer-copyright {
+        font-size: .77rem;
+    }
+
+    .footer-social {
+        gap: 1.12rem;
+    }
+
+    footer {
+        padding: 1 0;
+    }
+}
+
+/* Media Query -1: 420px - 678px*/
+@media (min-width: 420px) and (max-width: 678px) {
     body::before,
     body::after {
         display: none;
@@ -1089,8 +1424,8 @@ footer {
     }
 }
 
-/* Media Query 0: 678px - 849px */
-@media (min-width: 678px) and (max-width: 849px) {
+/* Media Query 0: 678px - 850px */
+@media (min-width: 678px) and (max-width: 850px) {
     body::before,
     body::after {
         display: none;
@@ -1418,8 +1753,8 @@ footer {
     }
 }
 
-/* Media Query 1 (Telefone XS - Tablet L): 850px - 1023px */
-@media (min-width: 850px) and (max-width: 1023px) {
+/* Media Query 1 (Telefone XS - Tablet L): 850px - 1024px */
+@media (min-width: 850px) and (max-width: 1024px) {
     body::before,
     body::after {
         display: none;
@@ -1688,8 +2023,8 @@ footer {
     }
 }
 
-/* Media Query 2 (PC XS e Tablets XL): 1024px - 1389px */
-@media (min-width: 1024px) and (max-width: 1389px) {
+/* Media Query 2 (PC XS e Tablets XL): 1024px - 1390px */
+@media (min-width: 1024px) and (max-width: 1400px) {
     body::before,
     body::after {
         display: none;
@@ -1938,8 +2273,8 @@ footer {
     }
 }
 
-/* Media Query 2.5 (correção pra incluir notebooks no background de padrão): 1390px - 1399px */
-@media (min-width: 1390px) and (max-width: 1399px) {
+/* Media Query 2.5 (correção pra incluir notebooks no background de padrão): 1390px - 1400px */
+@media (min-width: 1390px) and (max-width: 1400px) {
     body::before,
     body::after {
         background-image: url('../../assets/padrao2.png'); /* Caminho relativo à imagem de fundo */
@@ -1947,7 +2282,7 @@ footer {
 }
 
 /* Media Query 3 (PC S - PC XL): 1401px - ... */
-@media (min-width: 1390px) {
+@media (min-width: 1400px) {
     /* Estilos do Header */
     header {
         height: 5rem;
@@ -2157,7 +2492,13 @@ footer {
     }
 }
 
-/* Media Query 4 (Sessão de "Etapas do projeto" para PC S e Tablets XL): 1024px - 1530px */
+
+
+
+
+/* Media Queries para sessões específica */
+
+/* Esp. Media Query 1 (Sessão de "Etapas do projeto" para PC S e Tablets XL): 1024px - 1530px */
 @media (max-width: 1530px) {
 
     /* Estilos da seção Etapas do Processo */
@@ -2217,370 +2558,50 @@ footer {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Media Query -2: ... - 419px*/
-@media (min-width: 320px) and (max-width: 420px) {
-    body::before,
-    body::after {
-        display: none;
-    }
-    
-    /* Estilos do Header */
-    header {
-        height: 2.5rem;
-    }
-
-    .container{
-        margin: 0;
-        padding: 0;
-        justify-content: space-between; /* Adicionado para melhor distribuição */
-    }
-
-    .header-contacts {
-        display: none;
-    }
-
-    .logo-area {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0; /* Removendo margens */
-        padding: 0; /* Removendo paddings */
-        width: fit-content;
-      }
-
-    .logo img {
-        height: 1.6rem;
-        margin: 0;
-    }
-
-    .logo-text {
-        margin: 0;
-        font-size: .6rem;
-        padding: 0;
-        white-space: nowrap;
-    }
-
-    /* Menu de Navegação */
-    .secondary-menu-toggle {
-        width: 2.5rem;
-        height: 2.5rem;
-        position: relative;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        margin: 0;
-    }
-
-    .secondary-menu-icon {
-        width: 1.2rem;
-        height: auto;
-        transition: 0.2s ease; /* Animação de entrada e saída */
-    }
-
-    .secondary-menu-icon:hover {
-        transform: scale(1.1);
-    }
-
-    .secondary-menu {
-        position: fixed;
-        top: 0;
-        left: -100%; /* Começa fora da tela */
-        width: 20rem;
-        height: 21rem;
-        border-radius: 0 0 1rem 0;
-        background-color: white;
-        z-index: 10001; /* Acima do header */
-        transition: left 0.2s ease; /* Animação de entrada e saída */
-        overflow-y: hidden;
-    }
-
-    .secondary-menu.active {
-        left: 0; /* Move para a tela quando ativo */
-    }
-
-    .secondary-menu ul {
-        padding: 1rem;
-    }
-
-    .secondary-menu ul li {
-        margin-bottom: 1rem;
-        border-bottom: 1px solid #ccc; /* Linha separadora */
-        padding-bottom: 1rem;
-    }
-
-    .secondary-menu ul li a {
-        text-decoration: none;
-        color: #005200; /* Cor do texto do menu */
-        font-size: 1rem;
-        font-family: "Novecento WideMedium";
-        display: block;
-    }
-
-    .secondary-menu ul li a:hover {
-        color: #009200;
-    }
-
-    /* Adição de Estilos para os Contatos do Menu Secundário */
-    .secondary-menu-contacts {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 0 3rem 0rem 3rem;
-    margin-top: -.5rem;
-    }
-
-    .secondary-menu-contacts a {
-    display: flex;
-    }
-
-    .secondary-menu-contacts-icon {
-    width: 2rem;
-    height: auto;
-    }
-
-    .nav ul li a {
-        display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
-    }
-
-    .contact-icon {
-        max-height: 3rem;
-    }
-
-    /* Estilos da HOME */
-    .home-main {
-        flex-direction: column; /* Altera o layout para coluna */
-        align-items: center; /* Centraliza os elementos horizontalmente */
-        padding-top: 2.5rem;
-    }
-
-    .home-right-box {
-        position: relative; /* Altera o posicionamento para relativo */
-        height: 50%;
-        width: 100%;
-        padding: 1.2rem .5rem;
-    }
-
-    .home-content-box {
-        height: 50vh;
-        width: 100%;
-        margin: 0;
-    }
-
-    .home-text-content {
-        padding: .625rem;
-        word-break: break-word;
-        margin-top: -.7rem;
-    }
-
-    .home-title {
-        font-size: 1.7rem;
-    }
-
-    .home-body-text {
-        font-size: 1rem;
-    }
-
-    .home-line-image {
-        margin-top: .6rem;
-    }
-
-    /* Estilos dos Produtos */
-
-    .products-background {
-        background-color: #00000000; /* Invisível */
-        width: 45rem;
-        height: 100rem;
-    }
-    
-    .products-background-son{
-        width: 100svw;
-        height: 5rem;
-    }
-    
-    .products-apresentation-text{
-        padding-top: 2%;
-        font-size: .8rem;
-        line-height: 2rem;
-    }
-
-    .products-arrows-container {
-        display: none;
-    }
-
-    .products-carousel-container {
-        width: 51rem;
-    }
-
-    .products-carousel-item {
-        width: 16.15rem;
-        height: 12rem;
-        padding: 0 .05rem 0 .05rem;
-    }
-
-    h1 {
-        font-size: 1rem;
-        color: #005200;
-        background: white;
-    }
-
-    .products-separator {
-        background: white;
-    }
-
-    /* Estilos da seção Etapas do Processo */
+/* Esp. Media Query 2 (Sessão de "Etapas do projeto"): 484px - 725px */
+@media (min-width: 484px) and (max-width: 725px) {
     #processo {
-        height: 130rem;
-        }
-
-    .process-title {
-        font-size: 1.5rem;
-        font-weight: normal;
-        color: #005200;
-        margin-top: 3.3rem;
-        margin-bottom: -2.5rem;
-    }
-
-    .process-steps {
-        max-width: 60rem;
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-        display: flex;
-        flex-wrap: wrap; /* Adicionado para quebrar em linhas */
-        justify-content: center;
-    }
-
-    .process-card {
-        margin-top: 5rem;
-        width: 12rem;
-        height: 15rem;
-        border-radius: 5px;
-        margin-left: 9px;
-        margin-right: 9px;
-    }
-
-    .process-card::after {
-        top: -3rem;
-        font-size: 2.3rem;
-        color: white;
-        background: #005200;
-        padding: 1rem;
-        padding-top: .1rem;
-        width: 4rem;
-        border-radius: 5px;
-    }
-
-    .card-content {
-        padding-top: 0rem;
-    }
-
-    .card-title {
-        font-size: .9rem;
-    }
-
-    .card-text {
-        font-size: .77rem;
-    }
-
-    /* Estilos da seção Por que nos escolher */
-    .choose-us-section .content {
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
-    .choose-us-text-wrapper {
-        margin: 0 0 1rem 0;
-        width: 25rem;
-    }
-
-    .choose-us-card-wrapper {
-        width: 70%;
-    }
-
-    .choose-us-title {
-        font-size: 1.6rem;
-    }
-
-    .choose-us-card {
-        padding: 20px;
-        width: 100%;
-        height: auto;
-    }
-
-    .choose-us-icon {
-        width:  2.188rem;
-        height: 2.188rem;
-    }
-
-    .choose-us-text {
-        font-size: .77rem;
-    }
-
-    .choose-us-line {
-        width: 20rem;
-    }
-
-    .choose-us-item::before {
-        left: 5%;
-    }
-
-    /* Estilos do Footer */
-    footer {
-        font-size: .77rem;
-    }
-
-    .footer-social-icon {
-        width: 1.12rem;
-    }
-
-    .footer-text, .footer-social-link, .footer-copyright {
-        font-size: .77rem;
-    }
-
-    .footer-social {
-        gap: 1.12rem;
-    }
-
-    footer {
-        padding: 1 0;
+        height: 73rem;
     }
 }
+
+/* Esp. Media Query 2 (Sessão de "Etapas do projeto"): ... - 483px */
+@media (max-width: 483px) {
+    #processo {
+        height: 135rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
