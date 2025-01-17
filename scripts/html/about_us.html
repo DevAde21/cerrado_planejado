@@ -19,68 +19,6 @@
             url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.svg#Novecento WideMedium")format("svg");
         }
 
-        body {
-            background: linear-gradient(to right, #11b411, #005200);
-            color: white;
-            font-family: "Novecento WideMedium";
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        body::before {
-            content: '';
-            position:fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: .5;
-            background-image: url("../../assets/padrao1.png"), url("../../assets/padrao1.png");
-            background-position: left top, right top;
-            background-repeat: repeat-y, repeat-y;
-            background-size: auto 100%; /* Ajuste conforme necessário */
-            pointer-events: none; /* Para que o fundo não intercepte eventos do mouse */
-            z-index: -1; /* Garante que o pseudo-elemento fique atrás do conteúdo */
-        }
-        /* Importando a fonte novecento */
-        @import url(https://db.onlinewebfonts.com/c/c2988552206031b82497c4a05a393759?family=Novecento+WideMedium);
-
-        @font-face {
-            font-family: "Novecento WideMedium";
-            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot");
-            src: url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.eot?#iefix")format("embedded-opentype"),
-            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff2")format("woff2"),
-            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.woff")format("woff"),
-            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.ttf")format("truetype"),
-            url("https://db.onlinewebfonts.com/t/c2988552206031b82497c4a05a393759.svg#Novecento WideMedium")format("svg");
-        }
-
-        body {
-            background: linear-gradient(to right, #11b411, #005200);
-            color: white;
-            font-family: "Novecento WideMedium";
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        body::before {
-            content: '';
-            position:fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: .5;
-            background-image: url("../../assets/padrao1.png"), url("../../assets/padrao1.png");
-            background-position: left top, right top;
-            background-repeat: repeat-y, repeat-y;
-            background-size: auto 100%; /* Ajuste conforme necessário */
-            pointer-events: none; /* Para que o fundo não intercepte eventos do mouse */
-            z-index: -1; /* Garante que o pseudo-elemento fique atrás do conteúdo */
-        }
-
         /* Reset e box-sizing */
         html {
             box-sizing: border-box;
@@ -99,11 +37,41 @@
 
         body {
             font-family: "Novecento WideMedium";
-            background: linear-gradient(to right, #11b411, #005200);
-            background-repeat: no-repeat; /* Impede a repetição do background */
-            background-size: cover; /* Ajusta o tamanho para cobrir a tela */
-            background-attachment: scroll; /* Garante que o background não role com a página */
+            position: relative; /* Adiciona position relative ao body */
+            background: linear-gradient(to right, #11b411, #005200); /* Gradiente aplicado diretamente ao body */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            z-index: 0; /* Garante que o body fique atrás dos pseudo-elementos */
         }
+
+        body::before,
+        body::after {
+            content: '';
+            margin-top: -2.5rem;
+            position: absolute;
+            top: 0;
+            width: 50%; /* Ajuste a largura conforme necessário */
+            height: 103.1%;
+            background-image: url('../../assets/padrao1.png'); /* Caminho relativo à imagem de fundo */
+            background-repeat: repeat-y; /* A imagem se repete apenas verticalmente */
+            background-size: auto; /* Mantém o tamanho original da imagem */
+            z-index: -1; /* Coloca os pseudo-elementos atrás do conteúdo do body */
+            opacity: .5;
+        }
+
+        body::before {
+            left: 0; /* Posiciona o primeiro pseudo-elemento no lado esquerdo */
+            top: 0;
+        }
+
+        body::after {
+            top: 0;
+            right: 0; /* Posiciona o segundo pseudo-elemento no lado direito */
+            transform: scaleX(-1);
+        }
+
+
 
         section {
             text-align: center;

@@ -10,11 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuItems = `
         <ul>
             <li><a href="#inicio" class="active">Tela Inicial</a></li>
-            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#produtos">Ambientes</a></li>
             <li><a href="#processo">Etapas do processo</a></li>
             <li><a href="#escolher">Por que nos escolher</a></li>
             <li><a href="scripts/html/about_us.html">Sobre nós</a></li>
         </ul>
+        <div class="secondary-menu-contacts">
+          <a href="https://www.instagram.com/cerradoplanejado/" target="_blank" rel="noopener noreferrer">
+              <img class="secondary-menu-contacts-icon" src="assets/instagram2.png" alt="Instagram">
+            </a>
+            <a href="https://wa.me/+5561981002114" target="_blank" rel="noopener noreferrer">
+                <img class="secondary-menu-contacts-icon" src="assets/whatsapp2.png" alt="WhatsApp">
+            </a>
+            <a href="mailto:contato@cerradoplanejado.com.br">
+                <img class="secondary-menu-contacts-icon" src="assets/email2.png" alt="E-mail">
+            </a>
+        </div>
     `;
     secondaryMenu.innerHTML = menuItems;
 
@@ -198,55 +209,8 @@ function createProductsCarousel(data) {
     let productsCurrentX = 0;
     let productsIsDragging = false;
     let productsThreshold = productsItemWidth / 2;
+    let productsItemsToMove = productsItemsToShow;
 
-     // Cria um elemento de sobreposição para o fundo escurecido
-     const overlay = document.createElement('div');
-     overlay.classList.add('overlay');
-     document.body.appendChild(overlay);
- 
-     // Adiciona um ouvinte de evento de clique a cada imagem do carrossel
-     productsCarouselItems.forEach(item => {
-         const img = item.querySelector('img');
-         img.addEventListener('click', () => {
-             // Cria uma cópia da imagem clicada para exibição ampliada
-             const expandedImg = document.createElement('img');
-             expandedImg.src = img.src;
-             expandedImg.classList.add('expanded-image');
- 
-             // Adiciona a imagem ampliada e o fundo ao corpo do documento
-             document.body.appendChild(expandedImg);
-             overlay.style.display = 'block';
- 
-             // Impede a rolagem do corpo da página
-             document.body.classList.add('zoom-active');
- 
-             // Adiciona um ouvinte de evento de clique para fechar a imagem ampliada
-             const closeExpandedImage = () => {
-                 document.body.removeChild(expandedImg);
-                 overlay.style.display = 'none';
-                 document.body.classList.remove('zoom-active');
-                 // Remove os ouvintes de evento quando a imagem é fechada
-                 window.removeEventListener('wheel', closeExpandedImage);
-                 window.removeEventListener('touchmove', closeExpandedImage);
-                 window.removeEventListener('keydown', closeExpandedImageOnEsc);
-             };
- 
-             // Fecha a imagem ampliada ao rolar
-             window.addEventListener('wheel', closeExpandedImage);
-             window.addEventListener('touchmove', closeExpandedImage);
- 
-             // Fecha a imagem ampliada ao pressionar Esc
-             const closeExpandedImageOnEsc = (event) => {
-                 if (event.key === 'Escape') {
-                     closeExpandedImage();
-                 }
-             };
-             window.addEventListener('keydown', closeExpandedImageOnEsc);
- 
-             expandedImg.addEventListener('click', closeExpandedImage);
-             overlay.addEventListener('click', closeExpandedImage);
-         });
-     });
 
     function cloneProductsItems() {
         for (let i = 0; i < productsItemsToShow; i++) {
@@ -318,6 +282,7 @@ function createProductsCarousel(data) {
              productsPrevButton.classList.remove('hidden');
              productsNextButton.classList.remove('hidden');
             productsCarouselContainer.classList.remove('dragging');
+            productsItemsToMove = productsItemsToShow;
 
             productsCarouselContainer.removeEventListener('mousedown', startDrag);
             productsCarouselContainer.removeEventListener('touchstart', startDrag);
@@ -335,7 +300,7 @@ function createProductsCarousel(data) {
                     productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
                     productsCarouselTrack.offsetHeight;
                 }
-                    moveToProductsSlide(productsFirstVisibleItem + productsItemsToShow);
+                    moveToProductsSlide(productsFirstVisibleItem + productsItemsToMove);
                 });
                  productsPrevButton.addEventListener('click', () => {
                     if (productsIsTransitioning) return;
@@ -345,7 +310,7 @@ function createProductsCarousel(data) {
                     productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
                     productsCarouselTrack.offsetHeight;
                 }
-                moveToProductsSlide(productsFirstVisibleItem - productsItemsToShow);
+                moveToProductsSlide(productsFirstVisibleItem - productsItemsToMove);
             });
 
           } else {
@@ -353,6 +318,7 @@ function createProductsCarousel(data) {
             productsArrowsContainer.classList.add('hidden');
              productsPrevButton.classList.add('hidden');
              productsNextButton.classList.add('hidden');
+             productsItemsToMove = 1; //muda para 1 em 1 quando estiver em touchscreen
 
             productsNextButton.removeEventListener('click',()=>{});
             productsPrevButton.removeEventListener('click', ()=>{});
@@ -368,6 +334,7 @@ function createProductsCarousel(data) {
             window.addEventListener('mouseleave', endDrag);
         }
     }
+
     function startDrag(e) {
             productsIsDragging = true;
            if (e.type === 'mousedown') {
@@ -415,8 +382,8 @@ function createProductsCarousel(data) {
             }
 
             // Ajustar o índice para múltiplas imagens
-             let numImagesToMove = productsItemsToShow * Math.round((adjustedTargetIndex - productsFirstVisibleItem) / productsItemsToShow);
-              if (numImagesToMove !== 0) {
+            let numImagesToMove = productsItemsToMove * Math.round((adjustedTargetIndex - productsFirstVisibleItem) / productsItemsToMove);
+             if (numImagesToMove !== 0) {
                   moveToProductsSlide(productsFirstVisibleItem + numImagesToMove);
              } else {
                   productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
@@ -430,6 +397,29 @@ function createProductsCarousel(data) {
         productsStartX = 0;
         productsCurrentX = 0;
     };
+
+        // Adiciona um ouvinte de evento de clique a cada imagem do carrossel
+        productsCarouselItems.forEach(item => {
+            const img = item.querySelector('img');
+            img.addEventListener('click', (e) => {
+                if (hasCursor()) return; // Não faz nada se houver cursor
+
+                e.preventDefault(); // Impede o comportamento padrão do clique (ampliar imagem)
+
+                  // Move para o próximo slide
+                if(!productsIsDragging){
+                     if (productsIsTransitioning) return;
+                    if (productsFirstVisibleItem >= productsTotalItems - productsItemsToShow - productsItemsToShow) {
+                    productsCarouselTrack.style.transition = 'none';
+                    productsFirstVisibleItem = productsItemsToShow - productsItemsToShow;
+                    productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+                    productsCarouselTrack.offsetHeight;
+                   }
+                    moveToProductsSlide(productsFirstVisibleItem + productsItemsToMove);
+                }
+            });
+        });
+
 
     // Inicializa o modo do carrossel e ouve mudanças na mídia para atualizar
     updateCarouselMode();
