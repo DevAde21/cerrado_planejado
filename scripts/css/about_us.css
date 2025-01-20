@@ -47,7 +47,7 @@ body::after {
     position: absolute;
     top: 0;
     width: 50%; /* Ajuste a largura conforme necessário */
-    height: 103.1%;
+    height: 100%;
     background-image: url('../../assets/padrao1.png'); /* Caminho relativo à imagem de fundo */
     background-repeat: repeat-y; /* A imagem se repete apenas verticalmente */
     background-size: auto; /* Mantém o tamanho original da imagem */
@@ -669,7 +669,7 @@ footer {
 }
 
 /* Media Query 1 (Telefone XS - Tablet L): 850px - 1023px */
-@media (min-width: 850px) and (max-width: 1023px) {
+@media (min-width: 850px) and (max-width: 1024px) {
     body::before,
     body::after {
         height: 103.7%;
