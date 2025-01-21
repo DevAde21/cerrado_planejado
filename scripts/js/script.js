@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const navLinks = document.querySelectorAll('.nav ul li a, .secondary-menu ul li a'); // Alteração na linha para adicionar itens do menu
+    const navLinks = document.querySelectorAll('.nav ul li a, .secondary-menu ul li a');
 
     // Adicionando o redirecionamento para o botão Sobre
     navLinks.forEach(link => {
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Dados dos produtos para os carrosséis
-const productsCarouselData = [ // ideal serem sempre números pares
+const productsCarouselData = [ // ideal serem sempre múltiplos de 3
     { title: "Salas", directory: "assets/produtos/sala", numImages: 18 },
     { title: "Escritórios", directory: "assets/produtos/escritorio", numImages: 6 },
     { title: "Quartos", directory: "assets/produtos/quarto", numImages: 6 },
@@ -188,225 +188,332 @@ function createProductsCarousel(data) {
     productsSeparator.classList.add('products-separator');
     productsMainContainer.appendChild(productsSeparator);
 
-    const productsArrowsContainer = document.createElement('div');
-    productsArrowsContainer.classList.add('products-arrows-container');
+    // Criação dos botões de seta ou container do carrossel, dependendo do tipo de dispositivo
+    const isCursorDevice = window.matchMedia('(pointer: fine)').matches;
+    let productsCarouselContainer;
 
-    // Criação dos botões de seta
-    const productsPrevButton = document.createElement('button');
-    productsPrevButton.classList.add('products-carousel-arrow', 'products-prev');
-    const productsPrevImg = document.createElement('img');
-    productsPrevImg.src = "assets/seta.png";
-    productsPrevImg.alt = "prev";
-    productsPrevButton.appendChild(productsPrevImg);
+    if (isCursorDevice) {
+        const productsArrowsContainer = document.createElement('div');
+        productsArrowsContainer.classList.add('products-arrows-container');
 
-    const productsNextButton = document.createElement('button');
-    productsNextButton.classList.add('products-carousel-arrow', 'products-next');
-    const productsNextImg = document.createElement('img');
-    productsNextImg.src = "assets/seta.png";
-    productsNextImg.alt = "next";
-    productsNextButton.appendChild(productsNextImg);
+        const productsPrevButton = document.createElement('button');
+        productsPrevButton.classList.add('products-carousel-arrow', 'products-prev');
+        const productsPrevImg = document.createElement('img');
+        productsPrevImg.src = "assets/seta.png";
+        productsPrevImg.alt = "prev";
+        productsPrevButton.appendChild(productsPrevImg);
 
-    productsArrowsContainer.appendChild(productsPrevButton);
-    productsArrowsContainer.appendChild(productsNextButton);
-    productsMainContainer.appendChild(productsArrowsContainer);
+        const productsNextButton = document.createElement('button');
+        productsNextButton.classList.add('products-carousel-arrow', 'products-next');
+        const productsNextImg = document.createElement('img');
+        productsNextImg.src = "assets/seta.png";
+        productsNextImg.alt = "next";
+        productsNextButton.appendChild(productsNextImg);
 
-    const productsCarouselContainer = document.createElement('div');
-    productsCarouselContainer.classList.add('products-carousel-container');
-    const productsCarouselTrack = document.createElement('div');
-    productsCarouselTrack.classList.add('products-carousel-track');
-    productsCarouselContainer.appendChild(productsCarouselTrack);
-    productsMainContainer.appendChild(productsCarouselContainer);
+        productsArrowsContainer.appendChild(productsPrevButton);
+        productsArrowsContainer.appendChild(productsNextButton);
+        productsMainContainer.appendChild(productsArrowsContainer);
 
-    document.body.insertBefore(productsMainContainer, document.getElementById("processo"));
+        productsCarouselContainer = document.createElement('div');
+        productsCarouselContainer.classList.add('products-carousel-container');
+        const productsCarouselTrack = document.createElement('div');
+        productsCarouselTrack.classList.add('products-carousel-track');
+        productsCarouselContainer.appendChild(productsCarouselTrack);
+        productsMainContainer.appendChild(productsCarouselContainer);
 
-    function createProductsCarouselItems() {
-        for (let i = 1; i <= data.numImages; i++) {
-            const productsCarouselItem = document.createElement('div');
-            productsCarouselItem.classList.add('products-carousel-item');
-            const img = document.createElement('img');
-            img.loading = 'lazy';
-            img.src = `${data.directory}/${data.directory.split('/').pop()}${i}.webp`;
-            img.alt = `${data.title} ${i}`;
-            productsCarouselItem.appendChild(img);
-            productsCarouselTrack.appendChild(productsCarouselItem);
+        document.body.insertBefore(productsMainContainer, document.getElementById("processo"));
+
+        function createProductsCarouselItems() {
+            for (let i = 1; i <= data.numImages; i++) {
+                const productsCarouselItem = document.createElement('div');
+                productsCarouselItem.classList.add('products-carousel-item');
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.src = `${data.directory}/${data.directory.split('/').pop()}${i}.webp`;
+                img.alt = `${data.title} ${i}`;
+
+                img.addEventListener('click', () => {
+                    if (expandedImg) {
+                        closeExpandedImage();
+                    }
+                    expandedImg = document.createElement('img');
+                    expandedImg.src = img.src;
+                    expandedImg.classList.add('expanded-image');
+                    document.body.appendChild(expandedImg);
+                    overlayZoom.style.display = 'block';
+                    document.body.classList.add('zoom-active');
+
+                    overlayZoom.style.pointerEvents = 'auto';
+                });
+
+                productsCarouselItem.appendChild(img);
+                productsCarouselTrack.appendChild(productsCarouselItem);
+            }
         }
-    }
 
-    createProductsCarouselItems();
-    const productsCarouselItems = productsCarouselTrack.querySelectorAll('.products-carousel-item');
-    const productsItemWidth = productsCarouselItems[0].offsetWidth + parseInt(window.getComputedStyle(productsCarouselItems[0]).marginRight);
-    const productsNumItems = productsCarouselItems.length;
-    let productsFirstVisibleItem = 0;
-    let productsIsTransitioning = false;
-    let productsStartX = 0;
-    let productsCurrentX = 0;
-    let productsIsDragging = false;
-    let productsThreshold = productsItemWidth / 2;
-    let productsItemsToMove = productsItemsToShow;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let hasMoved = false;
+        createProductsCarouselItems();
 
-    // Adiciona um ouvinte de evento de clique a cada imagem do carrossel
-    productsCarouselItems.forEach(item => {
-        const img = item.querySelector('img');
-        img.addEventListener('click', () => {
-            // Fechar qualquer imagem ampliada existente, independentemente do carrossel
-            closeExpandedImage();
+        const productsCarouselItems = productsCarouselTrack.querySelectorAll('.products-carousel-item');
+        const productsItemWidth = productsCarouselItems[0].offsetWidth + parseInt(window.getComputedStyle(productsCarouselItems[0]).marginRight);
+        const productsNumItems = productsCarouselItems.length;
+        let productsFirstVisibleItem = 0;
+        let productsIsTransitioning = false;
+        let productsStartX = 0;
+        let productsCurrentX = 0;
+        let productsIsDragging = false;
+        let productsThreshold = productsItemWidth / 2;
 
-            // Exibe o overlay
-            overlayZoom.style.display = 'block';
+        function cloneProductsItems() {
+            for (let i = 0; i < productsItemsToShow; i++) {
+                let productsFirstClone = productsCarouselItems[i].cloneNode(true);
+                let productsLastClone = productsCarouselItems[productsNumItems - 1 - i].cloneNode(true);
 
-            // Cria uma nova imagem ampliada
-            expandedImg = document.createElement('img');
-            expandedImg.src = img.src;
-            expandedImg.classList.add('expanded-image');
-            expandedImg.style.zIndex = '10000'; // Posiciona a imagem acima do overlay
+                productsFirstClone.querySelector('img').addEventListener('click', () => {
+                    if (expandedImg) {
+                        closeExpandedImage();
+                    }
+                    expandedImg = document.createElement('img');
+                    expandedImg.src = productsFirstClone.querySelector('img').src;
+                    expandedImg.classList.add('expanded-image');
+                    document.body.appendChild(expandedImg);
+                    overlayZoom.style.display = 'block';
+                    document.body.classList.add('zoom-active');
 
-            // Adiciona a imagem ampliada ao corpo do documento
-            document.body.appendChild(expandedImg);
+                    overlayZoom.style.pointerEvents = 'auto';
+                });
 
-            // Impede a rolagem do corpo da página e a interação com elementos abaixo
-            document.body.classList.add('zoom-active');
+                productsLastClone.querySelector('img').addEventListener('click', () => {
+                    if (expandedImg) {
+                        closeExpandedImage();
+                    }
+                    expandedImg = document.createElement('img');
+                    expandedImg.src = productsLastClone.querySelector('img').src;
+                    expandedImg.classList.add('expanded-image');
+                    document.body.appendChild(expandedImg);
+                    overlayZoom.style.display = 'block';
+                    document.body.classList.add('zoom-active');
 
-            // Impede a interação com elementos atrás da imagem ampliada e do overlay
-            overlayZoom.style.pointerEvents = 'auto';
+                    overlayZoom.style.pointerEvents = 'auto';
+                });
 
-            // Adiciona um ouvinte de evento de clique na imagem ampliada para fechar
-            expandedImg.addEventListener('click', closeExpandedImage);
+                productsCarouselTrack.appendChild(productsFirstClone);
+                productsCarouselTrack.insertBefore(productsLastClone, productsCarouselItems[0]);
+            }
+        }
+
+        cloneProductsItems();
+
+        const productsClonedItems = productsCarouselTrack.querySelectorAll('.products-carousel-item');
+        const productsTotalItems = productsClonedItems.length;
+
+        productsFirstVisibleItem = productsItemsToShow;
+        productsCarouselTrack.style.transform = `translateX(-${productsFirstVisibleItem * productsItemWidth}px)`;
+
+        function calculateProductsSlidePosition(index) {
+            return -index * productsItemWidth;
+        }
+
+        function updateProductsCarouselItems() {
+            productsClonedItems.forEach((item, index) => {
+                const itemIndex = calculateProductsLoopIndex(index);
+                item.querySelector('img').src = `${data.directory}/${data.directory.split('/').pop()}${itemIndex}.webp`;
+            });
+        }
+
+        function calculateProductsLoopIndex(index) {
+            const baseIndex = index - productsItemsToShow;
+            return (baseIndex % productsNumItems + productsNumItems) % productsNumItems + 1;
+        }
+
+        updateProductsCarouselItems();
+
+        function moveToProductsSlide(index) {
+            if (productsIsTransitioning) return;
+            productsIsTransitioning = true;
+            productsCarouselTrack.style.transition = 'transform .5s ease-in-out';
+            productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(index)}px)`;
+
+            productsFirstVisibleItem = index;
+            updateProductsCarouselItems();
+            setTimeout(() => {
+                productsIsTransitioning = false;
+            }, productsTransitionDuration);
+        }
+
+        const checkProductsAndResetPosition = () => {
+            if (productsFirstVisibleItem >= productsTotalItems - productsItemsToShow) {
+                productsCarouselTrack.style.transition = 'none';
+                productsFirstVisibleItem = productsItemsToShow;
+                productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+            } else if (productsFirstVisibleItem <= productsItemsToShow - 1) {
+                productsCarouselTrack.style.transition = 'none';
+                productsFirstVisibleItem = productsTotalItems - productsItemsToShow - 1;
+                productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+            }
+        }
+
+        function startDrag(e) {
+            productsIsDragging = true;
+            if (e.type === 'mousedown') {
+                productsStartX = e.pageX - productsCarouselTrack.offsetLeft;
+            } else {
+                productsStartX = e.touches[0].pageX - productsCarouselTrack.offsetLeft;
+            }
+            productsCarouselContainer.classList.add('dragging');
+            productsCarouselTrack.style.transition = 'none';
+        }
+
+        function moveDrag(e) {
+            if (!productsIsDragging) return;
+            if (e.type === 'mousemove') {
+                productsCurrentX = e.pageX - productsCarouselTrack.offsetLeft;
+            } else {
+                productsCurrentX = e.touches[0].pageX - productsCarouselTrack.offsetLeft;
+            }
+            productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem) + (productsCurrentX - productsStartX)}px)`;
+        }
+
+        const endDrag = () => {
+            if (!productsIsDragging) return;
+            productsIsDragging = false;
+            productsCarouselContainer.classList.remove('dragging');
+            let diff = productsCurrentX - productsStartX;
+
+            if (Math.abs(diff) > productsThreshold) {
+                const dragDistanceInItems = Math.round(diff / productsItemWidth);
+                let targetIndex = productsFirstVisibleItem - dragDistanceInItems;
+                let adjustedTargetIndex = targetIndex;
+
+                if(diff > 0) { //Dragging right
+                     if (targetIndex < productsItemsToShow) {
+                        productsCarouselTrack.style.transition = 'none';
+                        adjustedTargetIndex = productsTotalItems - productsItemsToShow + (targetIndex - productsItemsToShow);
+                        productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(adjustedTargetIndex)}px)`;
+                       productsCarouselTrack.offsetHeight;
+                     }
+                }else { //Dragging left
+                    if (targetIndex > productsTotalItems - productsItemsToShow -1) {
+                         productsCarouselTrack.style.transition = 'none';
+                        adjustedTargetIndex = productsItemsToShow + (targetIndex - (productsTotalItems - productsItemsToShow));
+                         productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(adjustedTargetIndex)}px)`;
+                        productsCarouselTrack.offsetHeight;
+                    }
+                }
+
+                // Ajustar o índice para múltiplas imagens
+                 let numImagesToMove = productsItemsToShow * Math.round((adjustedTargetIndex - productsFirstVisibleItem) / productsItemsToShow);
+                  if (numImagesToMove !== 0) {
+                      moveToProductsSlide(productsFirstVisibleItem + numImagesToMove);
+                 } else {
+                      productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
+                      productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+                 }
+
+            } else {
+                productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
+                productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+            }
+            productsStartX = 0;
+            productsCurrentX = 0;
+        };
+
+        productsNextButton.addEventListener('click', () => {
+            if (productsIsTransitioning) return;
+            if (productsFirstVisibleItem >= productsTotalItems - productsItemsToShow - productsItemsToShow) {
+                productsCarouselTrack.style.transition = 'none';
+                productsFirstVisibleItem = productsItemsToShow - productsItemsToShow;
+                productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+                productsCarouselTrack.offsetHeight;
+            }
+            moveToProductsSlide(productsFirstVisibleItem + productsItemsToShow);
         });
-    });
 
-      function calculateProductsSlidePosition(index) {
-       return -index * productsItemWidth;
-    }
-      function calculateProductsLoopIndex(index) {
-       const baseIndex = index - productsItemsToShow;
-         return (baseIndex % productsNumItems + productsNumItems) % productsNumItems + 1;
-  }
-  function moveToProductsSlide(index) {
-    if (productsIsTransitioning) return;
-  
-    if (window.matchMedia('(pointer: fine)').matches) {
-      // Para dispositivos com mouse
-      if (index > productsNumItems - productsItemsToShow) {
-        index = productsNumItems - productsItemsToShow;
-      }
+        productsPrevButton.addEventListener('click', () => {
+            if (productsIsTransitioning) return;
+            if (productsFirstVisibleItem <= productsItemsToShow) {
+                productsCarouselTrack.style.transition = 'none';
+                productsFirstVisibleItem = productsTotalItems - productsItemsToShow;
+                productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+                productsCarouselTrack.offsetHeight;
+            }
+            moveToProductsSlide(productsFirstVisibleItem - productsItemsToShow);
+        });
+
+        productsCarouselTrack.addEventListener('transitionend', () => {
+            checkProductsAndResetPosition();
+        });
+
     } else {
-      // Para dispositivos touchscreen
-      // Aqui estava o erro: a condição estava limitando a rolagem para o penúltimo item (productsNumItems - 2)
-      // O correto é limitar para o último item visível de acordo com productsItemsToShow
-      if (index > productsNumItems - productsItemsToShow) {
-        index = productsNumItems - productsItemsToShow;
-      }
-    }
-  
-    // Garante que não haja rolagem antes do primeiro item
-    if (index < 0) {
-      index = 0;
-    }
-  
-    productsIsTransitioning = true;
-    productsCarouselTrack.style.transition = 'transform .5s ease-in-out';
-    productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(index)}px)`;
-    productsFirstVisibleItem = index;
-  
-    setTimeout(() => {
-      productsIsTransitioning = false;
-    }, productsTransitionDuration);
-  }
-  
+        // Configuração para dispositivos sem cursor (touchscreen)
+        productsCarouselContainer = document.createElement('div');
+        productsCarouselContainer.classList.add('products-carousel-container');
 
-    function hasCursor() {
-       return window.matchMedia('(pointer: fine)').matches;
-   }
+        const productsCarouselTrack = document.createElement('div');
+        productsCarouselTrack.classList.add('products-carousel-track');
+        productsCarouselContainer.appendChild(productsCarouselTrack);
+        productsMainContainer.appendChild(productsCarouselContainer);
 
-   function updateCarouselMode() {
-    productsNextButton.addEventListener('click', () => {
-        if (productsIsTransitioning) return;
-        moveToProductsSlide(productsFirstVisibleItem + productsItemsToMove);
-    });
-    
-    productsPrevButton.addEventListener('click', () => {
-        if (productsIsTransitioning) return;
-        moveToProductsSlide(productsFirstVisibleItem - productsItemsToMove);
-    });
+        document.body.insertBefore(productsMainContainer, document.getElementById("processo"));
 
-         if(!hasCursor()){
+        function createProductsCarouselItems() {
+            for (let i = 1; i <= data.numImages; i++) {
+                const productsCarouselItem = document.createElement('div');
+                productsCarouselItem.classList.add('products-carousel-item');
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.src = `${data.directory}/${data.directory.split('/').pop()}${i}.webp`;
+                img.alt = `${data.title} ${i}`;
 
-                productsItemsToMove = 1;
+                img.addEventListener('click', () => {
+                    expandedImg = document.createElement('img');
+                    expandedImg.src = img.src;
+                    expandedImg.classList.add('expanded-image');
+                    document.body.appendChild(expandedImg);
+                    overlayZoom.style.display = 'block';
+                    document.body.classList.add('zoom-active');
 
-               productsCarouselContainer.addEventListener('touchstart', startDrag);
-              productsCarouselContainer.addEventListener('touchmove', moveDrag);
-               productsCarouselContainer.addEventListener('touchend', endDrag);
-          }
-         else {
-            productsItemsToMove = productsItemsToShow;
-                productsCarouselContainer.removeEventListener('touchstart', startDrag);
-             productsCarouselContainer.removeEventListener('touchmove', moveDrag);
-               productsCarouselContainer.removeEventListener('touchend', endDrag);
+                    overlayZoom.style.pointerEvents = 'auto';
+                });
 
-           }
-
-  }
-  function startDrag(e) {
-    productsIsDragging = true;
-    hasMoved = false; // Reinicia a flag de movimento
-    touchStartX = e.touches[0].clientX; // Coordenada inicial do toque
-    touchStartY = e.touches[0].clientY; // Coordenada inicial do toque vertical
-    productsStartX = e.touches[0].pageX - productsCarouselTrack.offsetLeft; // Posição inicial horizontal
-    productsCarouselContainer.classList.add('dragging');
-    productsCarouselTrack.style.transition = 'none';
-}
-
-function moveDrag(e) {
-    if (!productsIsDragging) return;
-
-    const touchMoveX = e.touches[0].clientX;
-    const touchMoveY = e.touches[0].clientY;
-
-    // Detecta movimento significativo para diferenciar toque simples de arraste
-    if (Math.abs(touchMoveX - touchStartX) > 10 || Math.abs(touchMoveY - touchStartY) > 10) {
-        hasMoved = true;
-        productsCurrentX = e.touches[0].pageX - productsCarouselTrack.offsetLeft;
-        productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem) + (productsCurrentX - productsStartX)}px)`;
-    }
-}
-
-function endDrag(e) {
-    if (!productsIsDragging) return;
-    productsIsDragging = false;
-    productsCarouselContainer.classList.remove('dragging');
-
-    if (hasMoved) {
-        // Calcula a movimentação do arraste
-        const diff = productsCurrentX - productsStartX - 75; // O valor subtraído serve para diminuir a sensibilidade da margem de arrasto
-
-        if (Math.abs(diff) > productsThreshold) {
-            const dragDistanceInItems = Math.round(diff / productsItemWidth);
-            moveToProductsSlide(productsFirstVisibleItem - dragDistanceInItems);
-        } else {
-            productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
-            productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+                productsCarouselItem.appendChild(img);
+                productsCarouselTrack.appendChild(productsCarouselItem);
+            }
         }
-    } else {
-        // Caso não tenha havido movimento, retorna à posição inicial
-        productsCarouselTrack.style.transition = 'transform 0.2s ease-in-out';
-        productsCarouselTrack.style.transform = `translateX(${calculateProductsSlidePosition(productsFirstVisibleItem)}px)`;
+
+        createProductsCarouselItems();
+
+        const productsCarouselItems = productsCarouselTrack.querySelectorAll('.products-carousel-item');
+        const productsItemWidth = productsCarouselItems[0].offsetWidth + parseInt(window.getComputedStyle(productsCarouselItems[0]).marginRight);
+
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        const maxTranslate = 0;
+        const minTranslate = -(productsCarouselItems.length * productsItemWidth - productsCarouselContainer.offsetWidth);
+
+        productsCarouselTrack.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            productsCarouselTrack.style.transition = 'none';
+        });
+
+        productsCarouselTrack.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+
+            currentTranslate = Math.max(Math.min(prevTranslate + deltaX, maxTranslate), minTranslate);
+            productsCarouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+        });
+
+        productsCarouselTrack.addEventListener('touchend', () => {
+            isDragging = false;
+            prevTranslate = currentTranslate;
+        });
     }
-
-    productsStartX = 0;
-    productsCurrentX = 0;
 }
-
-   // Inicializa o modo do carrossel e ouve mudanças na mídia para atualizar
-   updateCarouselMode();
-    window.matchMedia('(pointer: fine)').addEventListener('change', updateCarouselMode);
-   productsCarouselTrack.addEventListener('transitionend', () => {
-    });
-}
-
-productsCarouselData.forEach(data => createProductsCarousel(data));
 
 // Função para desativar o efeito de seleção azul
 function disableBlueHighlight() {
@@ -438,8 +545,29 @@ function removeHoverAnimations() {
     }
 }
 
-// Executar as funções ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
+// Função para atualizar o texto de apresentação com base no tipo de dispositivo
+function updatePresentationText() {
+    const isCursorDevice = window.matchMedia('(pointer: fine)').matches;
+    const presentationTextElement = document.querySelector('.products-apresentation-text');
+
+    if (!isCursorDevice) {
+        presentationTextElement.innerHTML = "Confira abaixo alguns dos serviços que oferecemos!<br>Arraste as imagens para ver mais";
+    } else {
+        presentationTextElement.innerHTML = "Confira abaixo alguns dos serviços que oferecemos!";
+    }
+}
+
+// Função de inicialização que verifica o tipo de dispositivo e executa o código apropriado
+function initialize() {
     disableBlueHighlight();
     removeHoverAnimations();
-});
+    updatePresentationText();
+
+    productsCarouselData.forEach(data => {
+        createProductsCarousel(data);
+    });
+}
+
+// Executar a função de inicialização ao carregar a página
+document.addEventListener('DOMContentLoaded', initialize);
+window.addEventListener('resize', updatePresentationText);

@@ -953,7 +953,14 @@ footer {
     }
 
     .products-carousel-container {
-        width: 51rem;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0.4rem; /* Adiciona espaçamento da margem esquerda da tela */
+        width: 100%;
+    }
+
+    .products-carousel-track {
+        width: auto; /* Garante que ele ocupe o espaço necessário */
     }
 
     .products-carousel-item {
@@ -970,6 +977,7 @@ footer {
 
     .products-separator {
         background: white;
+        bottom: 1.6rem;
     }
 
     /* Estilos da seção Etapas do Processo */
@@ -1304,7 +1312,14 @@ footer {
     }
 
     .products-carousel-container {
-        width: 51rem;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0.4rem; /* Adiciona espaçamento da margem esquerda da tela */
+        width: 100%;
+    }
+
+    .products-carousel-track {
+        width: auto; /* Garante que ele ocupe o espaço necessário */
     }
 
     .products-carousel-item {
@@ -1321,6 +1336,7 @@ footer {
 
     .products-separator {
         background: white;
+        bottom: 1.6rem;
     }
 
     /* Estilos da seção Etapas do Processo */
@@ -1643,7 +1659,14 @@ footer {
     }
 
     .products-carousel-container {
-        width: 51rem;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0.4rem; /* Adiciona espaçamento da margem esquerda da tela */
+        width: 100%;
+    }
+
+    .products-carousel-track {
+        width: auto; /* Garante que ele ocupe o espaço necessário */
     }
 
     .products-carousel-item {
@@ -1660,6 +1683,7 @@ footer {
 
     .products-separator {
         background: white;
+        bottom: 1.6rem;
     }
 
     /* Estilos da seção Etapas do Processo */
@@ -1980,7 +2004,20 @@ footer {
     }
 
     .products-carousel-container {
-        width: 51rem;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0.4rem; /* Adiciona espaçamento da margem esquerda da tela */
+        width: 100%;
+    }
+
+    .products-carousel-track {
+        width: auto; /* Garante que ele ocupe o espaço necessário */
+    }
+
+    .products-carousel-item {
+        width: 16.15rem;
+        height: 12rem;
+        padding: 0 .05rem 0 .05rem;
     }
 
     .products-carousel-item {
@@ -1993,6 +2030,7 @@ footer {
         font-size: 1.5rem;
         color: #005200;
         background: white;
+        margin-top: .6rem;
     }
 
     .products-separator {
@@ -2670,3 +2708,28 @@ footer {
 
 
 
+/* Estilos para a imagem ampliada */
+.expanded-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000; /* Certifique-se de que a imagem fique acima de outros elementos */
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos para o fundo escurecido */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999; /* Abaixo da imagem, mas acima do resto */
+    display: none; /* Inicialmente oculto */
+}
