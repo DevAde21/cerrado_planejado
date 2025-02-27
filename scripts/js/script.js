@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Menu de Navegação para Media Query 2
@@ -117,18 +118,93 @@ document.addEventListener('DOMContentLoaded', function () {
     const carouselInner = document.querySelector('.home-carousel-inner');
     const carouselItems = document.querySelectorAll('.home-carousel-item');
     let currentIndex = 0;
+    let isTransitioning = false; // Controla transições para evitar cliques múltiplos
+    let intervalId; // Variable to hold the interval ID
+
+    // Navigation dots container
+    const navDots = document.createElement('div');
+    navDots.classList.add('home-carousel-nav');
+    carouselInner.parentNode.appendChild(navDots); // Append to carousel container
+
+    // Create dots
+    for (let i = 0; i < carouselItems.length; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('home-carousel-dot');
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => {
+            goToSlide(i);
+            resetInterval(); // Reset interval on manual navigation
+        });
+        navDots.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.home-carousel-dot');
+
+    // Clone first and last items for infinite carousel
+    let firstItemClone = carouselItems[0].cloneNode(true);
+    let lastItemClone = carouselItems[carouselItems.length - 1].cloneNode(true);
+
+    carouselInner.appendChild(firstItemClone);
+    carouselInner.insertBefore(lastItemClone, carouselInner.firstChild);
+
+    // Recalculate items after cloning
+    const allCarouselItems = document.querySelectorAll('.home-carousel-item');
+    let itemWidth = carouselItems[0].offsetWidth; // Assuming all items have the same width initially. Recalculate on resize if needed.
+    let numItems = carouselItems.length;
+    currentIndex = 1; // Start at the original first item (after prepended clone)
+    carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
+
+    // Set active dot initially
+    updateNavDots();
+
+    function updateNavDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex - 1);
+        });
+    }
+
+    function goToSlide(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex = index + 1;
+        carouselInner.style.transition = 'transform 0.4s ease-in-out';
+        carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
+        updateNavDots();
+    }
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % carouselItems.length;
-        updateCarousel();
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        carouselInner.style.transition = 'transform 0.4s ease-in-out';
+        carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
+        updateNavDots();
     }
 
-    function updateCarousel() {
-        const offset = -currentIndex * 100;
-        carouselInner.style.transform = `translateX(${offset}%)`;
+    function resetInterval() {
+        clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, 6000);
     }
 
-    setInterval(nextSlide, 3000);
+    carouselInner.addEventListener('transitionend', function() {
+        if (currentIndex === numItems + 1) { // If we've moved past the last original item to the first clone
+            carouselInner.style.transition = 'none'; // Disable transition for immediate repositioning
+            currentIndex = 1; // Go back to the original first item position
+            carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
+            updateNavDots();
+        } else if (currentIndex === 0) { // Went to the cloned last item by going prev from the first
+            carouselInner.style.transition = 'none';
+            currentIndex = numItems; // Jump to the original last item
+            carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
+            updateNavDots();
+        }
+        isTransitioning = false;
+    });
+
+    // Start interval after initial setup, with a slight delay to prevent immediate transition
+    setTimeout(() => {
+        intervalId = setInterval(nextSlide, 6000);
+    }, 100); // Small delay to ensure initial setup completes first
 });
 
 // Dados dos produtos para os carrosséis
@@ -156,6 +232,7 @@ document.body.appendChild(overlayZoom);
 // Função global para fechar a imagem ampliada
 const closeExpandedImage = () => {
     if (expandedImg) {
+        expandedImg.removeEventListener('click', closeExpandedImage); // Remove listener
         document.body.removeChild(expandedImg);
         expandedImg = null; // Limpa a referência
         overlayZoom.style.display = 'none';
@@ -243,6 +320,9 @@ function createProductsCarousel(data) {
                     overlayZoom.style.display = 'block';
                     document.body.classList.add('zoom-active');
 
+                    // Novo evento de clique na imagem ampliada
+                    expandedImg.addEventListener('click', closeExpandedImage);
+
                     overlayZoom.style.pointerEvents = 'auto';
                 });
 
@@ -279,6 +359,8 @@ function createProductsCarousel(data) {
                     overlayZoom.style.display = 'block';
                     document.body.classList.add('zoom-active');
 
+                    expandedImg.addEventListener('click', closeExpandedImage);
+
                     overlayZoom.style.pointerEvents = 'auto';
                 });
 
@@ -292,6 +374,8 @@ function createProductsCarousel(data) {
                     document.body.appendChild(expandedImg);
                     overlayZoom.style.display = 'block';
                     document.body.classList.add('zoom-active');
+
+                    expandedImg.addEventListener('click', closeExpandedImage);
 
                     overlayZoom.style.pointerEvents = 'auto';
                 });
@@ -443,6 +527,14 @@ function createProductsCarousel(data) {
             checkProductsAndResetPosition();
         });
 
+         productsCarouselContainer.addEventListener('mousedown', startDrag);
+        productsCarouselContainer.addEventListener('mousemove', moveDrag);
+        productsCarouselContainer.addEventListener('mouseup', endDrag);
+        productsCarouselContainer.addEventListener('mouseleave', endDrag);
+
+        productsCarouselContainer.addEventListener('touchstart', startDrag);
+        productsCarouselContainer.addEventListener('touchmove', moveDrag);
+        productsCarouselContainer.addEventListener('touchend', endDrag);
     } else {
         // Configuração para dispositivos sem cursor (touchscreen)
         productsCarouselContainer = document.createElement('div');
@@ -471,6 +563,8 @@ function createProductsCarousel(data) {
                     document.body.appendChild(expandedImg);
                     overlayZoom.style.display = 'block';
                     document.body.classList.add('zoom-active');
+
+                    expandedImg.addEventListener('click', closeExpandedImage);
 
                     overlayZoom.style.pointerEvents = 'auto';
                 });

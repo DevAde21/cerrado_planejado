@@ -26,6 +26,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden; /* Para evitar barras de rolagem desnecessárias */
+    padding-top: 5rem;;
 }
 
 body::before {
@@ -53,10 +54,7 @@ body::before {
     
     /* Centralização */
     justify-self: center;
-    position: absolute;
-    top: calc(50% - 20px);
-    left: 48.15%;
-    transform: translate(-50%, -50%);
+    margin-top: 1rem;
 }
 
 h1 {
@@ -261,6 +259,10 @@ footer {
 
 /* Media Query -2: ... - 419px*/
 @media (max-width: 419px) {
+    body {
+        padding-top: 2.5rem;
+    }
+
     body::before {
         display: none;
     }
@@ -352,6 +354,10 @@ footer {
 
 /* Media Query -1: 419px - 677px*/
 @media (min-width: 419px) and (max-width: 677px) {
+    body {
+        padding-top: 2.5rem;
+    }
+
     body::before {
         display: none;
     }
@@ -457,6 +463,10 @@ footer {
 
 /* Media Query 0: 678px - 849px */
 @media (min-width: 678px) and (max-width: 849px) {
+    body {
+        padding-top: 5rem;
+    }
+    
     body::before {
         display: none;
     }
@@ -543,6 +553,10 @@ footer {
 
 /* Media Query 1 (Telefone XS - Tablet L): 850px - 1023px */
 @media (min-width: 850px) and (max-width: 1023px) {
+    body {
+        padding-top: 5rem;
+    }
+    
     body::before {
         display: none;
     }
@@ -625,6 +639,10 @@ footer {
 
 /* Media Query 2 (PC XS e Tablets XL): 1024px - 1389px */
 @media (min-width: 1024px) and (max-width: 1389px) {
+    body {
+        padding-top: 5rem;
+    }
+    
     body::before {
         display: none;
     }
@@ -720,6 +738,10 @@ footer {
 
 /* Media Query 3 (PC S - PC XL): 1390px - ... */
 @media (min-width: 1390px) {
+    body {
+        padding-top: 5rem;
+    }
+    
     /* Estilos do Header */
     header {
         height: 5rem;

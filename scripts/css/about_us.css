@@ -268,34 +268,10 @@ p {
     }
 }
 
-        /* Estilos do Header */
-        header {
-    background: linear-gradient(to right, #008300, #003d00);
-    width: 100%;
-    height: 5rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-.container-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    max-width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
 .logo-area {
     display: flex;
     align-items: center;
     margin-left: 1rem;
-}
-
-.logo img {
-    height: 3.5rem;
 }
 
 .logo-text {
@@ -341,38 +317,6 @@ p {
 
 .nav ul li a:hover {
     color: #ffff06;
-}
-
-.header-contacts {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-top: .9rem;
-    margin-right: 1rem;
-    width: 170px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.header-contacts button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 5px;
-    background-color: #006200;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.header-contacts-icon {
-    width: auto;
-    height: 26px;
-}
-
-.header-contacts button:hover {
-    background-color: #009200;
-    transform: scale(1.1);
 }
 
 /* Estilos do Footer */
@@ -445,49 +389,9 @@ footer {
     body::after {
         height: 108%;
     }
-    
-    /* Estilos do Header */
-    header {
-        height: 2.5rem;
-    }
-
-    .container-header{
-        margin: 0;
-        padding: 0;
-        justify-content: space-between; /* Adicionado para melhor distribuição */
-    }
-
-    .header-contacts {
-        display: none;
-    }
-
-    .logo-area {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0; /* Removendo margens */
-        padding: 0; /* Removendo paddings */
-        width: fit-content;
-    }
-
-    .logo img {
-        height: 1.6rem;
-        margin: .5rem;
-    }
-
-    .logo-text {
-        margin: 0;
-        font-size: .6rem;
-        padding: 0;
-        white-space: nowrap;
-    }
 
     .nav ul li a {
         display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -524,48 +428,8 @@ footer {
         height: 105.6%;
     }
 
-    /* Estilos do Header */
-    header {
-        height: 2.5rem;
-    }
-
-    .container-header{
-        margin: 0;
-        padding: 0;
-        justify-content: space-between; /* Adicionado para melhor distribuição */
-    }
-
-    .header-contacts {
-        display: none;
-    }
-
-    .logo-area {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0; /* Removendo margens */
-        padding: 0; /* Removendo paddings */
-        width: fit-content;
-    }
-
-    .logo img {
-        height: 1.6rem;
-        margin: .5rem;
-    }
-
-    .logo-text {
-        margin: 0;
-        font-size: .8rem;
-        padding: 0;
-        white-space: nowrap;
-    }
-
     .nav ul li a {
         display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -602,19 +466,6 @@ footer {
         height: 103.7%;
     }
 
-    /* Estilos do Header */
-    header {
-        height: 5rem;
-    }
-
-    .container-header{
-        justify-content: space-between;
-    }
-
-    .header-contacts {
-        display: none;
-    }
-
     .logo-area {
         position: absolute;
         left: 50%;
@@ -624,21 +475,8 @@ footer {
         width: fit-content;
     }
 
-    .logo img {
-        margin: .5rem;
-    }
-
-    .logo-text {
-        margin: 0;
-        white-space: nowrap;
-    }
-
     .nav ul li a {
         display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -675,39 +513,8 @@ footer {
         height: 103.7%;
     }
 
-    /* Estilos do Header */
-    header {
-        height: 5rem;
-    }
-
-    .container-header{
-        justify-content: space-between;
-    }
-
-    .logo-area {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0; /* Removendo margens */
-        padding: 0; /* Removendo paddings */
-        width: fit-content;
-    }
-
-    .logo img {
-        margin: .5rem;
-    }
-
-    .logo-text {
-        margin: 0;
-        white-space: nowrap;
-    }
-
     .nav ul li a {
         display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -745,39 +552,8 @@ footer {
         margin-top: -4.3rem;
     }
 
-    /* Estilos do Header */
-    header {
-        height: 5rem;
-    }
-
-    .container-header{
-        justify-content: space-between;
-    }
-
-    .logo-area {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0; /* Removendo margens */
-        padding: 0; /* Removendo paddings */
-        width: fit-content;
-    }
-
-    .logo img {
-        margin: .5rem;
-    }
-
-    .logo-text {
-        margin: 0;
-        white-space: nowrap;
-    }
-
     .nav ul li a {
         display: none;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -809,25 +585,9 @@ footer {
 
 /* Media Query 3 (PC S - PC XL): 1390px - ... */
 @media (min-width: 1390px) {
-    /* Estilos do Header */
-    header {
-        height: 5rem;
-    }
-
-    .logo img {
-        height: 3.15rem;
-    }
-
-    .logo-text {
-        font-size: 1.8rem;
-    }
 
     .nav ul li a {
         font-size: .9rem;
-    }
-
-    .header-contact {
-        height: 3rem;
     }
 
     .contact-icon {
@@ -1030,3 +790,409 @@ footer {
         display: none;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #region Header */
+header {
+    background: linear-gradient(to right, #008300, #003d00);
+    width: 100%;
+    height: 5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    font-family: "Novecento WideMedium";
+}
+
+.nav {
+    margin-left: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav ul {
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 1.5rem;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: .9rem;
+    transition: color 0.3s;
+    font-family: "Novecento WideMedium";
+}
+
+.nav ul li a:hover {
+    color: #ffff06;
+}
+
+.header-contacts {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: .9rem;
+    margin-right: 1rem;
+    width: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.header-contacts button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #006200;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.header-contacts-icon {
+    width: auto;
+    height: 26px;
+}
+
+.header-contacts button:hover {
+    background-color: #009200;
+    transform: scale(1.1);
+}
+
+/* Media Queries do Header */
+
+/* Media Query -2: ... - 419px*/
+@media (max-width: 419px) {
+
+    /* Estilos do Header */
+    header {
+        height: 2.5rem;
+    }
+
+    .container-header {
+        margin: 0;
+        padding: 0;
+        justify-content: space-between;
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .logo img {
+        height: 30.4px;
+        width: 28.99px;
+        margin-right: .5rem;
+        padding-top: .1rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1rem;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/* Media Query -1: 419px - 677px*/
+@media (min-width: 419px) and (max-width: 677px) {
+
+    /* Estilos do Header */
+    header {
+        height: 2.5rem;
+    }
+
+    .container-header {
+        margin: 0;
+        padding: 0;
+        justify-content: space-between;
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .logo img {
+        height: 30.4px;
+        width: 28.99px;
+        margin-right: .5rem;
+        padding-top: .1rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1rem;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/* Media Query 0: 678px - 849px */
+@media (min-width: 678px) and (max-width: 849px) {
+
+    /* Estilos do Header */
+    header {
+        height: 5rem;
+    }
+
+    .container-header {
+        justify-content: space-between;
+    }
+
+    .header-contacts {
+        display: none;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .logo img {
+        height: 56px;
+        width: 56.36px;
+        margin: .5rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/* Media Query 1 (Telefone XS - Tablet L): 850px - 1023px */
+@media (min-width: 850px) and (max-width: 1023px) {
+
+    /* Estilos do Header */
+    header {
+        height: 5rem;
+    }
+
+    .container-header {
+        justify-content: space-between;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .logo img {
+        height: 56px;
+        width: 56.36px;
+        margin: .5rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/* Media Query 2 (PC XS e Tablets XL): 1024px - 1389px */
+@media (min-width: 1024px) and (max-width: 1389px) {
+
+    /* Estilos do Header */
+    header {
+        height: 5rem;
+    }
+
+    .container-header {
+        justify-content: space-between;
+    }
+
+    .logo-area {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+        width: fit-content;
+    }
+
+    .logo img {
+        height: 56px;
+        width: 56.36px;
+        margin: .5rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    /* Menu de Navegação */
+    .secondary-menu-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        margin-left: 1rem;
+    }
+
+    .nav ul li a {
+        display: none;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/* Media Query 3 (PC S - PC XL): 1390px - ... */
+@media (min-width: 1390px) {
+    /* Estilos do Header */
+    header {
+        height: 5rem;
+    }
+
+    .logo img {
+        height: 56px;
+        width: 56.36px;
+        margin: .5rem;
+    }
+
+    .logo-text {
+        font-size: 1.8rem;
+    }
+
+    .nav ul li a {
+        font-size: .9rem;
+    }
+
+    .header-contact {
+        height: 3rem;
+    }
+
+    .contact-icon {
+        max-height: 3rem;
+    }
+}
+
+/*#endregion*/
