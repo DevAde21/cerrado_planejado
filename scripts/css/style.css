@@ -671,6 +671,7 @@ header {
     display: flex;
     will-change: transform;
     transition: transform 0.5s ease-in-out;
+    margin-bottom: .5rem;
 }
 
 .products-carousel-item {
@@ -1217,6 +1218,7 @@ footer {
 
     .products-carousel-track {
         width: auto; /* Garante que ele ocupe o espaço necessário */
+        margin-bottom: 0rem;
     }
 
     .products-carousel-item {
@@ -1534,6 +1536,7 @@ footer {
 
     .products-carousel-track {
         width: auto; /* Garante que ele ocupe o espaço necessário */
+        margin-bottom: 0rem;
     }
 
     .products-carousel-item {
@@ -1842,6 +1845,7 @@ footer {
 
     .products-carousel-track {
         width: auto; /* Garante que ele ocupe o espaço necessário */
+        margin-bottom: 0rem;
     }
 
     .products-carousel-item {
@@ -2152,6 +2156,7 @@ footer {
 
     .products-carousel-track {
         width: auto; /* Garante que ele ocupe o espaço necessário */
+        margin-bottom: 0rem;
     }
 
     .products-carousel-item {
@@ -2829,42 +2834,39 @@ footer {
 
 
 
-/* Navegação do carrossel da home */
-.home-carousel-nav {
+
+
+
+
+
+
+
+
+
+
+
+.carousel-dots {
     position: absolute;
-    bottom: 30px; /* Adjust as needed */
+    bottom: 20px; /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px; /* Adjust spacing between dots */
 }
 
-.home-carousel-dot {
-    display: inline-block;
-    width: 12px; /* Adjust dot size */
-    height: 12px; /* Adjust dot size */
+.carousel-dot {
+    width: 12px; /* Adjust size */
+    height: 12px; /* Adjust size */
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.75); /* White with 75% opacity */
+    background-color: white;
+    opacity: 0.75;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for active state */
+    transition: opacity 0.3s ease;
 }
 
-.home-carousel-dot.active {
-    background-color: white; /* Solid white for active dot */
+.carousel-dot:hover {
+    opacity: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
