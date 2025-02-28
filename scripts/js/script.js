@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentIndex = index;
 
     // Now transition effect and scheduling
-    carouselInner.style.transition = "transform 0.4s ease-in-out";
+    carouselInner.style.transition = "transform 1s ease-in-out";
     carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
     updateDots(); // and update it
   }
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentIndex++;
 
     // Transition + and call another action afterwards.
-    carouselInner.style.transition = "transform 0.4s ease-in-out";
+    carouselInner.style.transition = "transform 1s ease-in-out";
     carouselInner.style.transform = `translateX(${-itemWidth * currentIndex}px)`;
     updateDots(); // and update it afterwards
   }
