@@ -2932,7 +2932,9 @@ footer {
 .profile-container {
     width: 84px;
     height: 84px;
-    border-radius: 50%;
+    min-width: 84px;
+    min-height: 84px;
+    border-radius: 100%;
     background-color: #005200;
     display: flex;
     justify-content: center;
