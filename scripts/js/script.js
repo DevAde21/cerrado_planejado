@@ -1,5 +1,49 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  // Função de "Mostrar mais" da sessão de avaliações
+
+  const testimonialsContainer = document.querySelector('.testimonials-container');
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  const buttonContainer = document.querySelector('.button-container');
+  
+  let visibleRows = 1; // Start with 1 row visible
+  
+  function updateVisibility() {
+      testimonialCards.forEach((card, index) => {
+          if (index < visibleRows * 3) {
+              card.classList.add('visible');
+          } else {
+              card.classList.remove('visible');
+          }
+      });
+  
+      if (visibleRows * 3 >= testimonialCards.length) {
+          showMoreBtn.textContent = 'Mostrar menos';
+      } else {
+          showMoreBtn.textContent = 'Mostrar mais';
+      }
+  
+  }
+  
+  showMoreBtn.addEventListener('click', () => {
+      if (visibleRows * 3 >= testimonialCards.length) {
+          visibleRows = 1; // Reset to first row
+      } else {
+          visibleRows++; // Show next row
+      }
+      updateVisibility();
+  });
+  
+  updateVisibility(); // Initial visibility setup
+
+
+
+
+
+  
+
   // Menu de Navegação para Media Query 2
   const menuToggle = document.querySelector(".secondary-menu-toggle");
   const secondaryMenu = document.createElement("div");
@@ -12,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <li><a href="#produtos">Ambientes</a></li>
             <li><a href="#processo">Etapas do processo</a></li>
             <li><a href="#escolher">Por que nos escolher</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
             <li><a href="scripts/html/about_us.html">Sobre nós</a></li>
         </ul>
         <div class="secondary-menu-contacts">
@@ -94,6 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (targetId === "#escolher") {
           targetElement = document.querySelector(".choose-us-card");
           offset = -130;
+        } else if (targetId === "#avaliacoes") {
+          targetElement = document.querySelector(".avaliations-section");
+          offset = -120;
         }
 
         if (targetElement) {
